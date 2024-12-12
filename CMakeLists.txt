@@ -29,7 +29,11 @@ include_directories(include)
 
 # First test app : cmake --build . -t testApp
 add_executable(testApp 	src/testApp.cpp
-                )
+                        src/Score.cpp
+                        src/Team.cpp
+                        src/ScoreManager.cpp)
+                        
+                        
 
 
 
