@@ -20,12 +20,6 @@ include_directories(include)
 
 # Choose wich executable will be build : cmake --build . -t  
 
-# main executable : cmake --build . -t bttManager
-#add_executable(bttManager src/bttManager_main.cpp
-#                          src/lib_bttManager.cpp
-#                          src/bttParser.cpp
-#                          src/tagManager.cpp)
-#
 
 # First test app : cmake --build . -t testApp
 add_executable(testApp 	src/testApp.cpp
@@ -33,6 +27,14 @@ add_executable(testApp 	src/testApp.cpp
                         src/Team.cpp
                         src/ScoreManager.cpp)
                         
+# First Manager app (mostly for testing) : cmake --build . -t ManagerApp                        
+add_executable(ManagerApp 	  src/ManagerApp.cpp
+                              src/Score.cpp
+                              src/Team.cpp
+                              src/ScoreManager.cpp
+                              src/InputDevice.cpp)
+
+
                         
 
 
