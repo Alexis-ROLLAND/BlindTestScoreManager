@@ -32,7 +32,8 @@ add_executable(ManagerApp 	  src/ManagerApp.cpp
                               src/Score.cpp
                               src/Team.cpp
                               src/ScoreManager.cpp
-                              src/InputDevice.cpp)
+                              src/InputDevice.cpp
+                              src/outputDevice.cpp)
 
 
                         
