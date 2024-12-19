@@ -2,8 +2,8 @@
 
 
 
-void    ScoreManager::listTeamNames(){
+void    ScoreManager::listTeamNames()noexcept{
     for(auto team : this->TeamMap){
-        std::println("{}",team.second.getName());
+        std::println(std::clog,"{}",team.second.getName());
     }
 }

@@ -7,18 +7,44 @@
 
 class Team{
     private:
-        std::string Name{};
-        Score   TeamScore{};
+        std::string Name{};     /** Team's name     */
+        Score   TeamScore{};    /*  Team's scode    */
 
     public:
+        /**
+         * @brief Default Ctor - Defaulted
+         */
         Team() = default;
-        Team(const std::string &Name):Name{Name}{};
+
+
+        /**
+         * @brief Standard Ctor
+         * @param std::string Name : Team's name 
+         */
+        Team(const std::string &Name)noexcept:Name{Name}{};
+
+        /**
+         * @brief Dtor - Defaulted
+         */
         virtual ~Team() = default;
 
-        std::string getName(){return this->Name;};
+        /**
+         * @brief   Team's name getter
+         * @return  std::string : Team's name
+         */
+        [[nodiscard]]   std::string getName()noexcept{return this->Name;};
+
+        /**
+         * @brief Team's name setter
+         * @param std::string Name : Team's name 
+         */
         void        setName(const std::string &Name){this->Name = Name;};
 
-        Score&  getLocalScore() {return this->TeamScore;};
+        /**
+         * @brief   Returns a reference to the internal Score object
+         * @return  Score&
+         */
+        [[nodiscard]]   Score&  getLocalScoreRef()noexcept{return this->TeamScore;};
 
 
 };

@@ -8,6 +8,7 @@
 
 #include "ScoreManager.hpp"
 
+//----------------------------------------------------------------------------
 class InputDevice{
     private:
 

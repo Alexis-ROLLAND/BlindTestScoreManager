@@ -13,28 +13,58 @@ private:
 
     /**
      * @brief : Points accessor (w)
+     * @param uint16_t Nb - Number of points to set
      */
     void setPoints(uint16_t Nb) noexcept {this->Points = Nb;};    
     
 public:
-    Score() = default;  /** default ctor - defaulted */
+    /** 
+     * @brief default ctor - defaulted 
+     * */
+    Score() = default;  
 
 
     /**
      * @brief Standard Ctor
      * @param initialPoints 
      */
-    explicit Score(uint16_t initialPoints):Points{initialPoints}{}; 
+    explicit Score(uint16_t initialPoints)noexcept:Points{initialPoints}{}; 
 
+    /**
+     * @brief Dtor - Defaulted
+     */
     virtual ~Score() = default;
 
-    uint16_t getPoints(){return this->Points;};
+    /**
+     * @brief   Points accessor (w)
+     * @return  uint16_t : Number of points
+     */
+    uint16_t getPoints() noexcept {return this->Points;};
 
-    void    reset(){this->setPoints(0);};
-    void    set(uint16_t Nb){this->setPoints(Nb);};
 
-    void    inc(uint16_t Value = 1){this->setPoints(this->getPoints() + Value);};
-    void    dec(uint16_t Value = 1);
+    /**
+     * @brief   reset points function
+     *          Sets the number of points to zero 
+     */
+    void    reset() noexcept {this->setPoints(0);};
+
+    /**
+     * @brief Sets the number of points to a defined value
+     * @param uint16_t Nb : number of points 
+     */
+    void    set(uint16_t Nb) noexcept {this->setPoints(Nb);};
+
+    /**
+     * @brief Increments the number of points by a certain value (1 by default) 
+     * @param uint16_t Value 
+     */
+    void    inc(uint16_t Value = 1)noexcept{this->setPoints(this->getPoints() + Value);};
+
+    /**
+     * @brief Decrementss the number of points by a certain value (1 by default) 
+     * @param uint16_t Value 
+     */
+    void    dec(uint16_t Value = 1) noexcept;
 
 };
 
