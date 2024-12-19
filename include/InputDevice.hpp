@@ -13,26 +13,45 @@ class InputDevice{
     private:
 
     protected:
-        ScoreManager    &Manager;
+        ScoreManager    &Manager;   /** reference to the ScoreManager object */
 
     public:
-        InputDevice() = delete;     /* No default Ctor */
+        /**
+         * @brief default Ctor - DELETED
+         */
+        InputDevice() = delete;   
+
+
+        /**
+         * @brief Dtor - defaulted
+         */
         virtual ~InputDevice() = default;
 
+        /**
+         * @brief Standard Ctor
+         * @param ScoreManager& manager : reference to the ScoreManager to use 
+         */
         InputDevice(ScoreManager &manager):Manager{manager}{};
 
+        /**
+         * @brief Pure virtual function, launching the input device work
+         */
         virtual     void    Start() = 0;
 
 
 };
 //----------------------------------------------------------------------------
-constexpr   uint16_t    defaultUdpPort = 6666;
+constexpr   uint16_t    defaultUdpPort = 6666;  /** Server's default UDP port */
 constexpr   int         MAXLINE = 80;
 
+/**
+ * @brief General exception class for network errors 
+ */
 class   NetworkException : public std::runtime_error{
     public:
         explicit NetworkException(const std::string& what_arg):std::runtime_error(what_arg){};
 } ;
+
 /**
  * @brief   udp_server_InputDevice class
  * 
@@ -45,18 +64,42 @@ class   NetworkException : public std::runtime_error{
  */
 class udp_server_InputDevice : public InputDevice{
     private:
-        uint16_t    udpPort{};
-        std::jthread    udpServerThread;
-        void    _serverThread();
-        uint16_t    getUdpPort(){return this->udpPort;};
+        uint16_t    udpPort{};  /** Server's UDP port  */
+        std::jthread    udpServerThread;    /** jthread object, server core */
+        
+        /**
+         * @brief "Real" thrad server function
+         */
+        void    _serverThread();    
+        
+        /**
+         * @brief   UdpPort getter
+         * @return  uint16_t : Udp Port used by the server
+         */
+        [[nodiscard]] uint16_t    getUdpPort()noexcept{return this->udpPort;};
 
         void    DecodeTrame(const std::string &frame);     
     public:
+        /**
+         * @brief default Ctor - DELETED
+         */
         udp_server_InputDevice() = delete;
+
+        /**
+         * @brief Dtor - defaulted
+         */
         virtual ~udp_server_InputDevice() = default;
 
-        udp_server_InputDevice(ScoreManager &manager, uint16_t udpPort = defaultUdpPort):InputDevice{manager},udpPort{udpPort}{};
+        /**
+         * @brief Standard Ctor
+         * @param ScoreManager &manager : reference to the ScoreManager to use
+         * @param uint16_t udpPort : server's UDP port, defaultUdpPort by default 
+         */
+        udp_server_InputDevice(ScoreManager &manager, uint16_t udpPort = defaultUdpPort)noexcept:InputDevice{manager},udpPort{udpPort}{};
 
+        /**
+         * @brief Real Start function
+         */
         virtual     void    Start() override;
 };
 //----------------------------------------------------------------------------
